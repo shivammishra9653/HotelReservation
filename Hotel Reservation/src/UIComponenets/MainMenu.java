@@ -67,7 +67,9 @@ public class MainMenu {
         Scanner sc = new Scanner(System.in);
 //        here we are going to find valid checkInDate and CheckOutDate
         Date checkInDate = getCheckInDate();
+
         Date checkOutDate = getCheckOutDate(checkInDate);
+
 
 //        find all avaialable Rooms within checkInDate and checkOutDate
         Collection<IRoom> availableRooms = findAvailableRooms(checkInDate, checkOutDate);
@@ -84,6 +86,7 @@ public class MainMenu {
             calendar.add(Calendar.DATE, 7);
             Date alternateCheckOutDate = calendar.getTime();
 
+
             availableRooms = findAvailableRooms(alternateCheckInDate, alternateCheckOutDate);
 
             if(availableRooms.isEmpty()){
@@ -94,7 +97,7 @@ public class MainMenu {
                 }
 
                 System.out.println("\nNo Rooms available for those days\n " +
-                        "Do you wanted to book within checkInDate " + alternateCheckInDate + " checkOutDate " + checkOutDate +"\n" +
+                        "Do you wanted to book within checkInDate " + alternateCheckInDate + " checkOutDate " + alternateCheckOutDate +"\n" +
                         "Enter y/n"
                 );
 
@@ -103,7 +106,7 @@ public class MainMenu {
 //                check if user select y
                 if(option.equalsIgnoreCase("y")){
                     checkInDate = alternateCheckInDate;
-                    checkInDate = alternateCheckOutDate;
+                    checkOutDate = alternateCheckOutDate;
                     bookRoom(checkInDate, checkOutDate, availableRooms);
                     return;
                 }else{
